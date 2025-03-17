@@ -30,14 +30,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index']);
 
 Route::group(['prefix' => 'user'], function () {
-    Route::get('/', [UserController::class, 'index']);          // menampilkan halaman awal Level
-    Route::post('/list', [UserController::class, 'list']);      // menampilkan data Level dalam bentuk json untuk datatables
-    Route::get('/create', [UserController::class, 'create']);   // menampilkan halaman form tambah Level
-    Route::post('/', [UserController::class, 'store']);         // menyimpan data user Level
-    Route::get('/{id}', [UserController::class, 'show']);       // menampilkan detail Level
-    Route::get('/{id}/edit', [UserController::class, 'edit']);  // menampilkan halaman form edit Level
-    Route::put('/{id}', [UserController::class, 'update']);     // menyimpan perubahan data Level
-    Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data Level
+    Route::get('/', [UserController::class, 'index']);          // menampilkan halaman awal user
+    Route::post('/list', [UserController::class, 'list']);      // menampilkan data user dalam bentuk json untuk datatables
+    Route::get('/create', [UserController::class, 'create']);   // menampilkan halaman form tambah user
+    Route::post('/', [UserController::class, 'store']);         // menyimpan data user baru
+    Route::get('/create_ajax', [UserController::class, 'create_ajax']);   // menampilkan halaman form tambah user Ajax
+    Route::post('/ajax', [UserController::class, 'store_ajax']);   // menyimpan data user baru Ajax
+    Route::get('/{id}', [UserController::class, 'show']);       // menampilkan detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']);  // menampilkan halaman form edit user
+    Route::put('/{id}', [UserController::class, 'update']);     // menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
 });
 
 Route::group(['prefix' => 'level'], function () {
