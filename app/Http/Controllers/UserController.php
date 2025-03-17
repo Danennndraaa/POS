@@ -276,7 +276,35 @@ class UserController extends Controller
     return redirect('/'); 
     }
     
+    // Untuk tampilkan form confirm delete user ajax
+    public function confirm_ajax(string $id){ 
+        $user = UserModel::find($id);
+
+        return view('user.confirm_ajax', ['user' => $user]);
+    }
+
     
+    // Menghapus data user Ajax
+    public function delete_ajax(Request $request, $id) 
+    {
+        // cek apakah request dari ajax
+        if ($request->ajax() || $request->wantsJson()) {
+            $user = UserModel::find($id);
+            if ($user) {
+                $user->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data berhasil dihapus'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan'
+                ]);
+            }
+        }
+        return redirect('/');
+    }
     
     
     
