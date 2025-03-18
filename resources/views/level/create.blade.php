@@ -13,13 +13,9 @@
                 <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Level Nama</label>
                     <div class="col-11">
-                        <select class="form-control" id="level_id" name="level_id" required>
-                            <option value="">- Pilih Level -</option>
-                            @foreach($level as $item) 
-                                <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
-                            @endforeach 
-                        </select>
-                        @error('level_id') 
+                        <input type="text" class="form-control" id="level_nama" name="level_nama" value="{{ old('level_nama') }}"
+                            required>
+                        @error('level_nama') 
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror 
                     </div>
@@ -27,8 +23,8 @@
                 <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Level Kode</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="level_kode" name="level_kode"
-                            value="{{ old('level_kode') }}" required>
+                        <input type="text" class="form-control" id="level_kode" name="level_kode" value="{{ old('level_kode') }}"
+                            required>
                         @error('level_kode') 
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror 
