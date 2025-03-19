@@ -255,23 +255,25 @@ class SupplierController extends Controller
             if (!$supplier) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data supplier tidak ditemukan'
+                    'message' => 'Data tidak ditemukan'
                 ]);
             }
-
+    
             try {
-                SupplierModel::destroy($id);
+                $supplier->delete();
                 return response()->json([
                     'status' => true,
-                    'message' => 'Data supplier berhasil dihapus'
+                    'message' => 'Data berhasil dihapus'
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data supplier gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini'
+                    'message' => 'Data gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini'
                 ]);
             }
         }
+    
+        return redirect('/');
     }
 
     //menampilkan detail supplier dengan ajax
