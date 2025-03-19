@@ -63,13 +63,26 @@
                         data: $(form).serialize(),
                         success: function (response) {
                             if (response.status) {
-                                $('#myModal').modal('hide');
+                                // Tutup modal
+                                $('.modal').modal('hide');
+
+                                // Hapus backdrop dan class modal-open
+                                $('.modal-backdrop').remove();
+                                $('body').removeClass('modal-open');
+
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataKategori.ajax.reload(); // refresh datatable kategori
+
+                                if (typeof dataKategori !== 'undefined') {
+                                    dataKategori.ajax.reload(); // Refresh datatable
+                                }
+
+                                // Hapus modal dari DOM
+                                $('#modal-master').remove();
+
                             } else {
                                 Swal.fire({
                                     icon: 'error',
@@ -99,6 +112,12 @@
                 unhighlight: function (element) {
                     $(element).removeClass('is-invalid');
                 }
+            });
+
+            // Handle backdrop bersih otomatis ketika modal ditutup
+            $(document).on('hidden.bs.modal', '.modal', function () {
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open');
             });
         }); 
     </script>

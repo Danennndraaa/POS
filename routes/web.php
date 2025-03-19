@@ -70,9 +70,16 @@ Route::group(['prefix' => 'kategori'], function () {
     Route::post('/list', [KategoriController::class, 'list']);      // menampilkan data kategori dalam bentuk json untuk datatables
     Route::get('/create', [KategoriController::class, 'create']);   // menampilkan halaman form tambah kategori
     Route::post('/', [KategoriController::class, 'store']);         // menyimpan data kategori baru
+    Route::get('/create_ajax', [KategoriController::class, 'create_ajax']);   // menampilkan halaman form tambah kategori Ajax
+    Route::post('/ajax', [KategoriController::class, 'store_ajax']);   // menyimpan data kategori baru Ajax
     Route::get('/{id}', [KategoriController::class, 'show']);       // menampilkan detail kategori
     Route::get('/{id}/edit', [KategoriController::class, 'edit']);  // menampilkan halaman form edit kategori
     Route::put('/{id}', [KategoriController::class, 'update']);     // menyimpan perubahan data kategori
+    Route::get('/{id}/edit_ajax', [KategoriController::class, 'edit_ajax']);  // menampilkan halaman form edit kategori Ajax
+    Route::put('ajax/{id}', [KategoriController::class, 'update_ajax']);; // menyimpan perubahan data kategori Ajax
+    Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']); // menampilkan halaman konfirmasi delete kategori ajax
+    Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']); // menghapus data kategori ajax
+    Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']); // menampilkan detail kategori ajax
     Route::delete('/{id}', [KategoriController::class, 'destroy']); // menghapus data kategori
 });
 
