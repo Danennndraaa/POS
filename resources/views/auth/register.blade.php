@@ -5,99 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login Pengguna</title>
+    <title>Registrasi Pengguna</title>
 
-    <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-    {{-- icheck bootstrap --}}
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    {{-- SweetAlert2 --}}
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-    {{-- Theme Style --}}
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        {{-- /. login-logo --}}
         <div class="card card-outline card-primary">
-            <div class="card-header text-center"><a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a></div>
+            <div class="card-header text-center">
+                <a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a>
+            </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{ url('login') }}" method="POST" id="form-login">
+                <p class="login-box-msg">Register a new membership</p>
+                <form action="{{ url('register') }}" method="POST" id="form-register">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Username">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                        <small id="error-username" class="error-text text-danger"></small>
+                    <div class="form-group">
+                        <label>Level Pengguna</label>
+                        <select name="level_id" id="level_id" class="form-control" required>
+                            <option value="">- Pilih Level -</option>
+                            @foreach($level as $l)
+                                <option value="{{ $l->level_id }}">{{ $l->level_nama }}</option>
+                            @endforeach
+                        </select>
+                        <small id="error-level_id" class="error-text form-text text-danger"></small>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" id="password" class="form-control"
-                            placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        <small id="error-password" class="error-text text-danger"></small>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" id="username" class="form-control" required minlength="4"
+                            maxlength="20">
+                        <small id="error-username" class="error-text form-text text-danger"></small>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember"><label for="remember">Remember Me</label>
-                            </div>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" name="nama" id="nama" class="form-control" required maxlength="100">
+                        <small id="error-nama" class="error-text form-text text-danger"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required minlength="5"
+                            maxlength="20">
+                        <small id="error-password" class="error-text form-text text-danger"></small>
+                    </div>
+                    <div class="row justify-content-end">
+                        {{-- <div class="col-6">
+                            <button type="button" class="btn btn-warning btn-block"
+                                onclick="window.location.href='{{ url('/') }}'">Batal</button>
+                        </div> --}}
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
                         </div>
-                        {{-- /.col --}}
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-                        {{-- /.col --}}
                     </div>
                     <div class="text-center mt-3">
-                        <p>Belum punya akun? <a href="{{ url('register') }}">Register</a></p>
+                        <p>Sudah punya akun? <a href="{{ url('login') }}">Login</a></p>
                     </div>
                 </form>
             </div>
-            {{-- /.card-body --}}
         </div>
-        {{-- /.card --}}
     </div>
-    {{-- /.login-box --}}
+    </div>
 
-    {{-- jQuery --}}
     <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-    {{-- bootstrap-4 --}}
     <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    {{-- jquery-validation --}}
     <script src="{{ asset('adminlte/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/jquery-validation/additional-methods.min.js') }}"></script>
-    {{-- SweetAlert2 --}}
     <script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-    {{-- AdminLTE App --}}
     <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $(document).ready(function () {
-            $("#form-login").validate({
+            $("#form-register").validate({
                 rules: {
                     username: { required: true, minlength: 4, maxlength: 20 },
-                    password: { required: true, minlength: 5, maxlength: 20 }
+                    nama: { required: true, maxlength: 100 },
+                    password: { required: true, minlength: 5, maxlength: 20 },
+                    password_confirmation: { equalTo: "[name='password']" },
+                    level_id: { required: true, number: true }
                 },
                 submitHandler: function (form) {
                     $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
                         url: form.action,
                         type: form.method,
                         data: $(form).serialize(),
@@ -105,17 +99,17 @@
                             if (response.status) {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Berhasil',
+                                    title: 'Registrasi Berhasil',
                                     text: response.message,
-                                }).then(function () {
+                                }).then(() => {
                                     if (response.redirect) {
                                         window.location = response.redirect;
                                     }
                                 });
                             } else {
-                                $('.error-text').text('');
-                                $.each(response.msgField, function (prefix, val) {
-                                    $('#error-' + prefix).text(val[0]);
+                                $('.text-danger').text('');
+                                $.each(response.errors, function (key, val) {
+                                    $('#error-' + key).text(val[0]);
                                 });
                                 Swal.fire({
                                     icon: 'error',
@@ -132,10 +126,10 @@
                     error.addClass('invalid-feedback');
                     element.closest('.input-group').append(error);
                 },
-                highlight: function (element, errorClass, validClass) {
+                highlight: function (element) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function (element, errorClass, validClass) {
+                unhighlight: function (element) {
                     $(element).removeClass('is-invalid');
                 }
             });
