@@ -58,6 +58,7 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'level'], function () {
+Route::middleware(['authorize:ADM'])->group(function () {
     Route::get('/', [LevelController::class, 'index']);          // menampilkan halaman awal Level
     Route::post('/list', [LevelController::class, 'list']);      // menampilkan data Level dalam bentuk json untuk datatables
     Route::get('/create', [LevelController::class, 'create']);   // menampilkan halaman form tambah Level
@@ -73,6 +74,7 @@ Route::group(['prefix' => 'level'], function () {
     Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']); // menghapus data Level ajax
     Route::get('/{id}/show_ajax', [LevelController::class, 'show_ajax']); // menampilkan detail Level ajax
     Route::delete('/{id}', [LevelController::class, 'destroy']); // menghapus data Level
+});
 });
 
 Route::group(['prefix' => 'kategori'], function () {
