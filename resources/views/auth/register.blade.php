@@ -91,7 +91,7 @@
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
+                        },
                         url: form.action,
                         type: form.method,
                         data: $(form).serialize(),
@@ -102,9 +102,7 @@
                                     title: 'Registrasi Berhasil',
                                     text: response.message,
                                 }).then(() => {
-                                    if (response.redirect) {
-                                        window.location = response.redirect;
-                                    }
+                                    window.location.href = response.redirect; 
                                 });
                             } else {
                                 $('.text-danger').text('');
@@ -117,6 +115,13 @@
                                     text: response.message
                                 });
                             }
+                        },
+                        error: function (xhr) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Terjadi Kesalahan',
+                                text: xhr.responseJSON ? xhr.responseJSON.message : 'Silakan coba lagi',
+                            });
                         }
                     });
                     return false;

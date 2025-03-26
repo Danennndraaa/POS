@@ -70,7 +70,11 @@ public function PostRegister(Request $request)
     $user->level_id = $request->level_id;
     $user->save();
 
-    return redirect('login')->with('success', 'Registrasi berhasil! Silakan login.');
+    return response()->json([
+        'status' => true,  // Tambahkan status agar AJAX bisa membaca sukses
+        'message' => 'Registrasi berhasil! Silakan login.',
+        'redirect' => url('login') // Beri redirect yang bisa dibaca oleh AJAX
+    ]);
 }
 
 }
