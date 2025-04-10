@@ -143,6 +143,7 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::get ('/import', [BarangController::class, 'import']); // menampilkan halaman form import barang
     Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // menyimpan data barang baru Ajax
     Route::get ('/export_excel', [BarangController::class, 'export_excel']); // menampilkan halaman form export barang
+    Route::get('/export_pdf', [BarangController::class, 'export_pdf']); // menampilkan halaman form export barang pdf
 });
 });
 
