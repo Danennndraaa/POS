@@ -142,6 +142,7 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::delete('/{id}', [BarangController::class, 'destroy']); // menghapus data supplier
     Route::get ('/import', [BarangController::class, 'import']); // menampilkan halaman form import barang
     Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // menyimpan data barang baru Ajax
+    Route::get ('/export_excel', [BarangController::class, 'export_excel']); // menampilkan halaman form export barang
 });
 });
 
