@@ -140,6 +140,8 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);  // menghapus data barang ajax
     Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']); // menampilkan detail barang ajax
     Route::delete('/{id}', [BarangController::class, 'destroy']); // menghapus data supplier
+    Route::get ('/import', [BarangController::class, 'import']); // menampilkan halaman form import barang
+    Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // menyimpan data barang baru Ajax
 });
 });
 
