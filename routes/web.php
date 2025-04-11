@@ -134,6 +134,7 @@ Route::middleware(['authorize:ADM,MNG'])->group(function () {
     Route::get ('/import', [SupplierController::class, 'import']); // menampilkan halaman form import supplier
     Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); // menyimpan data supplier baru Ajax
     Route::get ('/export_excel', [SupplierController::class, 'export_excel']); // menampilkan halaman form export supplier
+    Route::get('/export_pdf', [SupplierController::class, 'export_pdf']); // menampilkan halaman form export supplier pdf
 });
 });
 
