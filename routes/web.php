@@ -110,6 +110,7 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::get ('/import', [KategoriController::class, 'import']); // menampilkan halaman form import kategori
     Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); // menyimpan data kategori baru Ajax
     Route::get ('/export_excel', [KategoriController::class, 'export_excel']); // menampilkan halaman form export kategori
+    Route::get('/export_pdf', [KategoriController::class, 'export_pdf']); // menampilkan halaman form export kategori pdf
 });
 });
 
