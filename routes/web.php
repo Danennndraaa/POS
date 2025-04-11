@@ -79,6 +79,8 @@ Route::middleware(['authorize:ADM'])->group(function () {
     Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']); // menghapus data Level ajax
     Route::get('/{id}/show_ajax', [LevelController::class, 'show_ajax']); // menampilkan detail Level ajax
     Route::delete('/{id}', [LevelController::class, 'destroy']); // menghapus data Level
+    Route::get ('/import', [LevelController::class, 'import']); // menampilkan halaman form import level
+    Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // menyimpan data level baru Ajax
 });
 });
 
