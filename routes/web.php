@@ -61,6 +61,7 @@ Route::middleware(['authorize:ADM'])->group(function () {
     Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
     Route::get ('/import', [UserController::class, 'import']); // menampilkan halaman form import user
     Route::post('/import_ajax', [UserController::class, 'import_ajax']); // menyimpan data user baru Ajax
+    Route::get ('/export_excel', [UserController::class, 'export_excel']); // menampilkan halaman form export user
 });
 });
 
