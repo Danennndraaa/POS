@@ -107,6 +107,8 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']); // menghapus data kategori ajax
     Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']); // menampilkan detail kategori ajax
     Route::delete('/{id}', [KategoriController::class, 'destroy']); // menghapus data kategori
+    Route::get ('/import', [KategoriController::class, 'import']); // menampilkan halaman form import kategori
+    Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); // menyimpan data kategori baru Ajax
 });
 });
 
