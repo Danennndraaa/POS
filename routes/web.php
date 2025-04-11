@@ -81,6 +81,7 @@ Route::middleware(['authorize:ADM'])->group(function () {
     Route::delete('/{id}', [LevelController::class, 'destroy']); // menghapus data Level
     Route::get ('/import', [LevelController::class, 'import']); // menampilkan halaman form import level
     Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // menyimpan data level baru Ajax
+    Route::get ('/export_excel', [LevelController::class, 'export_excel']); // menampilkan halaman form export level
 });
 });
 
