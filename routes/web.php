@@ -82,6 +82,7 @@ Route::middleware(['authorize:ADM'])->group(function () {
     Route::get ('/import', [LevelController::class, 'import']); // menampilkan halaman form import level
     Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // menyimpan data level baru Ajax
     Route::get ('/export_excel', [LevelController::class, 'export_excel']); // menampilkan halaman form export level
+    Route::get('/export_pdf', [LevelController::class, 'export_pdf']); // menampilkan halaman form export Level pdf
 });
 });
 

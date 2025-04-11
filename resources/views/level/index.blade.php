@@ -8,7 +8,8 @@
                 <button onclick="modalAction('{{ url('/level/import') }}')" class="btn btn-sm btn-primary mt-1">Import Level User</button>
                 {{-- <a class="btn btn-sm btn-primary mt-1" href="{{ url('level/create') }}">Tambah</a> --}}
                 <a href="{{ url('/level/export_excel') }}" class="btn btn-success btn-sm mt-1"><i class="fa fa-file-excel"></i> Export Barang (xlsx)</a>
-                <button onclick="modalAction('{{ url('/level/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
+                <a href="{{ url('/level/export_pdf') }}" target="_blank" class="btn btn-danger btn-sm mt-1"><i class="fa fa-file-pdf"></i> Export PDF</a>
+                <button onclick="modalAction('{{ url('/level/create_ajax') }}')" class="btn btn-sm btn-info mt-1">Tambah Ajax</button>
             </div>
         </div>
         <div class="card-body">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\LevelModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -360,7 +361,7 @@ public function confirm_ajax($id)
 public function export_excel()
 {
     // ambil data barang yang akan di export
-    $barang = LevelModel::select('level_kode', 'level_nama')
+    $level = LevelModel::select('level_kode', 'level_nama')
                         ->orderBy('level_id')
                         ->get();
 
@@ -376,7 +377,7 @@ public function export_excel()
 
     $no = 1;                             // nomor data dimulai dari 1
     $baris = 2;                          // baris data dimulai dari baris ke 2
-    foreach ($barang as $key => $value) {
+    foreach ($level as $key => $value) {
         $sheet->setCellValue('A'.$baris, $no);
         $sheet->setCellValue('B'.$baris, $value->level_kode);
         $sheet->setCellValue('C'.$baris, $value->level_nama);
@@ -404,6 +405,23 @@ public function export_excel()
 
     $writer->save('php://output');
     exit;
+}
+
+public function export_pdf()
+{
+    set_time_limit(300);
+
+    $level = LevelModel::select('level_kode', 'level_nama')
+                        ->orderBy('level_id')
+                        ->get();
+
+    // use Barryvdh\DomPDF\Facade\Pdf;
+    $pdf = Pdf::loadView('level.export_pdf', ['level' => $level]);
+    $pdf->setPaper('a4', 'portrait'); // set ukuran kertas dan orientasi
+    $pdf->setOption(['isRemoteEnabled' => true]); // set true jika ada gambar dari url
+    $pdf->render();
+
+    return $pdf->stream('Data Level '.date('Y-m-d H:i:s').'.pdf');
 }
 
 }
