@@ -2,7 +2,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/user2-160x160.jpg') }}"
+            <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/profile-user.png') }}"
                 class="user-image img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
@@ -84,7 +84,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu ==
+                <a href="{{ url('/penjualan') }}" class="nav-link {{ ($activeMenu ==
     'penjualan') ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>Transaksi Penjualan</p>
@@ -92,7 +92,7 @@
             </li>
             <li class="nav-header">Opsi</li>
             <li class="nav-item">
-                <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu == 'stok') ? 'active' : ''}}">
+                <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu == 'logout') ? 'active' : ''}}">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>Logout</p>
                 </a>

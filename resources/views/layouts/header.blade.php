@@ -13,7 +13,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown user user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/user2-160x160.jpg') }}"
+                <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/profile-user.png') }}"
                     class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><strong>{{ Auth::user()->username }}</strong></span>
             </a>
@@ -21,7 +21,7 @@
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/user2-160x160.jpg') }}"
+                    <img src="{{ asset(Auth::user()->profile_photo ? 'storage/profile-photo/' . Auth::user()->profile_photo : 'adminlte/dist/img/profile-user.png') }}"
                         class="img-circle elevation-2" alt="User Image">
                     <p class="mt-2">
                         <strong>{{ Auth::user()->nama }}</strong>
